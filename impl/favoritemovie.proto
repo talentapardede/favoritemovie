@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package favoritemovie;
+
+option go_package =  "test.com/go-favoritemovie;go_favoritemovie";
+
+
+service FavoriteMovieSearcher {
+    rpc SearchMovie(MovieSpec) returns (stream MovieDetail){}
+    rpc GetMovie(GetMovieSpec) returns (MovieDetail){}
+}
+
+message MovieSpec {
+    string searchword = 1;
+    int32 pagination = 2; 
+}
+
+message MovieDetail {
+    string title = 1;
+    string year = 2;
+    string imdbId = 3;
+    string type = 4;
+    string poster = 5;
+}
+
+message GetMovieSpec {
+    string idMovie = 1;
+}
